@@ -147,12 +147,69 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+      
+      <li class="nav-item dropdown user user-menu">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+      <img src="<?= $app->baseUrl; ?>/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2 alt="User Image">
+      <span class="hidden-xs">Alexander Pierce</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <!-- User image -->
+      <li class="user-header bg-primary">
+        <img src="<?= $app->baseUrl; ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+        <p>
+          Alexander Pierce - Web Developer
+          <small>Member since Nov. 2012</small>
+        </p>
+      </li>
+      <?php /*
+      <!-- Menu Body -->
+      <li class="user-body">
+        <div class="row">
+          <div class="col-4 text-center">
+            <a href="#">Followers</a>
+          </div>
+          <div class="col-4 text-center">
+            <a href="#">Sales</a>
+          </div>
+          <div class="col-4 text-center">
+            <a href="#">Friends</a>
+          </div>
+        </div>
+        <!-- /.row -->
+      </li>
+      */ ?>
+      <!-- Menu Footer-->
+      <li class="user-footer">
+        <?php /*
+        <div class="pull-left">
+          <a href="#" class="btn btn-default btn-flat">Profile</a>
+        </div>
+        */ ?>
+        <div class="pull-right">
+          <a><?=
+                  Html::beginForm(['/site/logout'], 'post')
+                  .Html::submitButton(
+                      'Logout',
+                      ['class' => 'btn btn-default btn-flat']
+                  )
+                  .Html::endForm(); ?>
+          </a>
+        </div>
+      </li>
+
+
+      <?php /*
+    </ul>
+    </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
           <i class="fas fa-th-large"></i>
         </a>
       </li>
     </ul>
+    */ ?>
   </nav>
   <!-- /.navbar -->
 
@@ -700,14 +757,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.sidebar-menu -->
       */ ?>
 
-      <?= dashboard\assets\SidebarMenu2::widget([
+      <nav class="mt-2">       
+        <?= dashboard\assets\SidebarMenu::widget([
         //'options' => [],
         'items' => [
-            ['label' => 'Header', 'options' => ['class' => 'nav-header']], //'items' => [
-              ['label' => 'Index', 'url' => ['index']],
-              ['label' => 'Index 2', 'url' => ['index2']],
-              ['label' => 'Index 3', 'icon' => 'user', 'url' => ['index3']],
-            //],
+            ['label' => 'Dashboard', 'icon' => 'nav-icon fas fa-tachometer-alt', 'items' => [
+                ['label' => 'Index', 'url' => ['index']],
+                ['label' => 'Index 2', 'url' => ['index2']],
+                ['label' => 'Index 3', 'url' => ['index3']],
+            ]],
             /*[
                 'label' => 'Some tools',
                 'icon' => 'share',
@@ -737,6 +795,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           ],
       ]); ?>
 
+      </nav>
     </div>
     <!-- /.sidebar -->
   </aside>

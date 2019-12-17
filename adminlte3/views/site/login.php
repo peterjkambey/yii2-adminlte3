@@ -1,4 +1,6 @@
 <?php
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = 'AdminLTE 3 | Login';
 
@@ -13,9 +15,9 @@ $this->title = 'AdminLTE 3 | Login';
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="index.php?r=site" method="post">
+      <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <?= Html::activeInput('', $model, 'username', ['class' => 'form-control', 'placeholder' => 'username']); ?>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -23,7 +25,7 @@ $this->title = 'AdminLTE 3 | Login';
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <?= Html::activeInput('', $model, 'password', ['class' => 'form-control', 'placeholder' => 'password']); ?>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -32,12 +34,10 @@ $this->title = 'AdminLTE 3 | Login';
         </div>
         <div class="row">
           <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <?= Html::activeCheckbox($model, 'rememberMe', ['id' => 'remember', 'label' => '']); ?>
               <label for="remember">
                 Remember Me
               </label>
-            </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
@@ -45,7 +45,7 @@ $this->title = 'AdminLTE 3 | Login';
           </div>
           <!-- /.col -->
         </div>
-      </form>
+        <?php ActiveForm::end(); ?>
 
       <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>

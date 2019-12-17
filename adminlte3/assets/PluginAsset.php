@@ -42,5 +42,4 @@ class PluginAsset extends AppAsset
     public $depends = [
         '\yii\web\JqueryAsset',
     ];
-
 }

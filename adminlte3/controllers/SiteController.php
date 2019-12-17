@@ -10,7 +10,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use dashboard\models\LoginForm;
 use dashboard\models\PasswordResetRequestForm;
 use dashboard\models\ResetPasswordForm;
 use dashboard\models\SignupForm;
@@ -80,6 +80,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            //return $this->goHome();
+            return $this->redirect(['site/login']);
+        }
+
         return $this->render('index');
     }
 
@@ -102,23 +107,25 @@ class SiteController extends Controller
     {
         $this->layout = 'login';
 
-        /*if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+        if (!Yii::$app->user->isGuest) {
+            //return $this->goHome();
+            return $this->redirect(['site/index']);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            //return $this->goBack();
+            return $this->redirect(['site/login']);
         } else {
             $model->password = '';
 
             return $this->render('login', [
                 'model' => $model,
             ]);
-        }*/
+        }
 
-        return $this->render('login', [
-        ]);
+        //return $this->render('login', [
+        //]);
     }
 
     /**
@@ -130,7 +137,8 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        //return $this->goHome();
+        return $this->redirect(['site/login']);
     }
 
     /**

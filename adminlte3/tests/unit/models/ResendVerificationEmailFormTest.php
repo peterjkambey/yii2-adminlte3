@@ -2,7 +2,6 @@
 
 namespace dashboard\tests\unit\models;
 
-
 use Codeception\Test\Unit;
 use common\fixtures\UserFixture;
 use dashboard\models\ResendVerificationEmailForm;
